@@ -1,5 +1,5 @@
 import nltk, string, operator
-from bs4 import BeautifulSoup
+
 from nltk import stem
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -13,6 +13,14 @@ class handler:
     self._weight = {}
     self.engine()
 
+  def get_title(self): return self.Title
+
+  def set_Title(self, title):
+    self.Title = title
+
+  def set_Text(self, text):
+    self.Text = text
+    
   def engine(self):
     tokens = word_tokenize(self.Text)
     sw = stopwords.words('english')

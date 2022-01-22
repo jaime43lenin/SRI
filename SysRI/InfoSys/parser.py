@@ -3,7 +3,7 @@ import string
 def Newsgroup(file):
   subject = ''
   text = ''
-  ss = 0
+  s = 1
   line = 1
   while line:
     line = file.readline()
@@ -13,7 +13,7 @@ def Newsgroup(file):
             continue
     text += line
   
-  return {subject, text}
+  return [subject, text]
 
   
 

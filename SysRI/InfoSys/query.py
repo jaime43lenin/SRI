@@ -1,5 +1,4 @@
 import nltk, string, operator
-from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import PorterStemmer
@@ -10,10 +9,10 @@ class query:
   def __init__(self, text):
     self.Text = text
     self.Words = {}
-    self.Weight = {}
+    self._weight = {}
     self.Relevant = []
     self.Not_relevant = []
-    self.Engine()
+    self.engine()
 
   def engine(self):
     tokens = word_tokenize(self.Text)
