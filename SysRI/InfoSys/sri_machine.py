@@ -1,6 +1,6 @@
 from InfoSys import doc_handle, query, parser, vectorial_framework
 import os, math, operator
-
+from nltk.stem import PorterStemmer
 
 
 class sri_machine:
@@ -9,6 +9,7 @@ class sri_machine:
     self.documents = []
     self.querys = []
     self.terms = {}
+    self.dict= {}
 
   def load_data(self):
     os.chdir('/Users/jaime_perez/Documents/School/SRI/SRI/SysRI/corpus/')
@@ -22,8 +23,7 @@ class sri_machine:
     os.chdir("..")
     self.index_inverted()
     self.global_weight()
-
-
+    self.build_dict()
   def global_weight(self):
     for term in self.terms.keys():
       for doc in self.terms[term]:
@@ -36,6 +36,17 @@ class sri_machine:
         if term in self.terms.keys():
           self.terms[term].append(doc)
         else: self.terms[term] = [doc]
+        
+  def build_dict(self):
+    stemmer = PorterStemmer()
+    for term in self.terms.keys():
+      stem_term = stemmer.stem(term)
+      if stem_term not in self.dict.keys():
+        self.dict[stem_term] = [term]
+      else: 
+        if term not in self.dict[stem_term]: 
+          self.dict[stem_term].append(term)
+    
 
 
   def create_query(self, q):
@@ -52,7 +63,7 @@ class sri_machine:
     ranking = {}
     
     for doc in self.documents:
-      cs = self.framework.sim(doc, query)
+      cs = self.framework.sim(doc, query, self.dict)
       if cs > 0.12:
         ranking[doc] = cs
     return sorted(ranking.items(), key=operator.itemgetter(1),reverse=True)
