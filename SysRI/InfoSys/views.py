@@ -13,6 +13,6 @@ class Home(TemplateView):
     query = request.POST['query']
     q = self.machine.create_query(query)
     ranking = self.machine.query_response(q)
-    data = [i[0] for i in ranking]
+    data = [i[0].Title for i in ranking]
     return render(request, 'home.html',{'data': data})
 

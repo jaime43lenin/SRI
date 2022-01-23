@@ -8,19 +8,24 @@ class query:
 
   def __init__(self, text):
     self.Text = text
-    self.Words = {}
-    self._weight = {}
+    self.terms = {}
+    self.Weight = {}
     self.Relevant = []
     self.Not_relevant = []
     self.engine()
+
+  def get_weight(self): return self.Weight
+  def get_terms(self): return self.terms
+  
+  def set_weight(self, term, value):
+    self.Weight[term] = value
 
   def engine(self):
     tokens = word_tokenize(self.Text)
     sw = stopwords.words('english')
     clean_tokens = [token for token in tokens if token not in sw]
-    stemmer = PorterStemmer()
-    stem_tokens = [stemmer.stem(word) for word in clean_tokens if word not in string.punctuation]
+    stem_tokens = [word for word in clean_tokens if word not in string.punctuation]
     freq = nltk.FreqDist(stem_tokens)
-    self._terms = freq
+    self.terms = freq
 
   
