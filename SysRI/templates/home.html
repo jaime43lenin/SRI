@@ -2,28 +2,35 @@
 <!DOCTYPE html>
 <html>
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="{% static 'tailwindcss/dist/tailwind.min.css' %}" >
-    <link
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="{% static 'tailwindcss/dist/tailwind.min.css' %}" >
+  <link
 	  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
 	  rel="stylesheet">
-    <div>
-      <form class="m-4 flex" name="" method="POST" >{% csrf_token %}
-        <input name="query" class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="search"/>
+  {%block section%}
+  <div>
+    <form class="m-4 flex" name="" method="POST" >{% csrf_token %}
+      <input name="query" class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="search"/>
       <button class="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r">Ask me</button >
     </form>
   </div>
   <div class="flex items-center justify-center min-h-screen bg-gray-900">
     <div class="col-span-12">
-      <div class="overflow-auto lg:overflow-visible ">
-        {%for title in data%}
-        <div class="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
-          {{title}}
+      <div class="overflow-auto p-2 lg:overflow-visible ">
+        {%for doc in data%}
+        <div class="bg-gray-800 text-white font-bold rounded-lg border shadow-lg p-2 mb-3">
+          {{doc}}
         </div>
+        
         {%endfor%}
+        <form class="m-4 flex" name="" method="POST" >{% csrf_token %}
+          <input name="id" class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="id"/>
+          <button class="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r">View</button >
+        </form>
       </div>
     </div>
   </div>
+  {%endblock%}
   <style>
     .table {
       border-spacing: 0 15px;

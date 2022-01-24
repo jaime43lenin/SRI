@@ -16,7 +16,7 @@ class query:
 
   def get_weight(self): return self.Weight
   def get_terms(self): return self.terms
-  
+  def get_text(self): return self.Text
   def set_weight(self, term, value):
     self.Weight[term] = value
 

@@ -6,13 +6,15 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import PorterStemmer
 
 class handler:
-  def __init__(self, title, text):
+  def __init__(self, title, text, id):
+    self.id = id
     self.Title = title
     self.Text = text
     self.terms = {}
     self.weight = {}
     self.engine()
 
+  def get_id(self): return self.id
   def get_title(self): return self.Title
   def get_text(self): return self.Text
   def get_terms(self): return self.terms

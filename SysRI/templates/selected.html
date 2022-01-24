@@ -1,0 +1,25 @@
+{%extends 'home.html'%}
+{%load static%}
+{%block section%}
+<div class="felx">
+  <div class=" flex-initial w-1/2">
+    <div class=" text-gray-900">
+      {{Title}}
+    </div>
+    <div class="text-sm">
+      {{Text}}
+    </div>
+  </div>
+  <div class="w-1/2 flex-initial p-4">
+    <div class="bg-gray-400">
+      <div class="text-5xl p-2 ">Suggested</div>
+      {%for d in data%}
+      <div class="bg-gray-800 text-white font-bold rounded-lg border shadow-lg p-2 mb-3">
+      {{d}}
+      </div>
+    {%endfor%}
+    </div>
+    
+  </div>
+</div>
+{%endblock%}
