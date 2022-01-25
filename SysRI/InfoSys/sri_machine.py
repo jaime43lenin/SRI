@@ -22,7 +22,7 @@ class sri_machine:
   def set_last_ranking(self, ranking): self.last_ranking = ranking
 
   def load_data(self):
-    os.chdir('/Users/jaime_perez/Documents/School/SRI/SRI/SysRI/corpus/')
+    os.chdir('./corpus/')
     data = [element for element in os.listdir()]
     id = 0
     for d in data:
@@ -36,7 +36,7 @@ class sri_machine:
     self.index_inverted()
     self.global_weight()
     self.build_dict()
-    
+
   def global_weight(self):
     for term in self.terms.keys():
       for doc in self.terms[term]:
