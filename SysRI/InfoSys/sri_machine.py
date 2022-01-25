@@ -36,6 +36,7 @@ class sri_machine:
     self.index_inverted()
     self.global_weight()
     self.build_dict()
+    
   def global_weight(self):
     for term in self.terms.keys():
       for doc in self.terms[term]:
